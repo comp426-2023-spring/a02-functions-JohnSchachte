@@ -62,7 +62,7 @@ if(foo.hasOwnProperty("d")){
 
 var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${tz}&elevation=127&current_weather=true`
 // var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&elevation=127&current_weather=true&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,rain.json`;
-console.log(url)
+// console.log(url)
 var response = await fetch(url,{
     method : "GET",
     headers : {
