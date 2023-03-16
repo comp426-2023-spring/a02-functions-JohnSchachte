@@ -1,0 +1,20 @@
+{
+  "name": "a02-functions-johnschachte",
+  "version": "1.0.0",
+  "description": "foo",
+  "main": "galosh.js",
+  "scripts": {
+    "test": "node cli.js -n 35.92 -w 79.05 -z America/New_York"
+  },
+  "author": "john schachte",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "minimist": "^1.2.8",
+    "moment-timezone": "^0.5.41",
+    "node-fetch": "^3.3.0"
+  },
+  "bin": {
+    "galosh.js": "./cli.js"
+  },
+  "type": "module"
+}
