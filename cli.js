@@ -55,35 +55,35 @@ if (args.z) {
 } else {
 	timezone = timezone;
 }
-var days;
-if(args.hasOwnProperty("d")){
-    coordinatesValidate(args["d"]);
-    days = parseInt(args["d"]);
-    if(days < 0 || days > 6){
-        process.exit(0);
-    }
-} else{
-    days = 1;
-}
+// var days;
+// if(args.hasOwnProperty("d")){
+//     coordinatesValidate(args["d"]);
+//     days = parseInt(args["d"]);
+//     if(days < 0 || days > 6){
+//         process.exit(0);
+//     }
+// } else{
+//     days = 1;
+// }
 var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${timezone}&current_weather=true`
 // var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&elevation=127&current_weather=true&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,rain.json`;
 // console.log(url)
 var response = await fetch(url);
-// console.log(response)
+// Get the data from the request
 const data = await response.json();
-// console.log(data)
 
-// console.log(data.daily.precipitation_hours)
-// var isGalosh = data.daily.precipitation_hours[days] >= 1 ? "You might need your galoshes " : "You will not need your galoshes";
+
+const days = args.d 
+
 if (days == 0) {
-    console.log("today.")
+  console.log("today.")
 } else if (days > 1) {
-    console.log("in " + days + " days.")
+  console.log("in " + days + " days.")
 } else {
-    console.log("tomorrow.")
+  console.log("tomorrow.")
 }
 
-if(args.j){
-    console.log(data)
+if (args.j) {
+    console.log(data);
     process.exit(0);
 }
