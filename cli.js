@@ -4,9 +4,9 @@ import minimist from "minimist";
 import moment from "moment-timezone";
 import fetch from "node-fetch";
 
-const foo = minimist(process.argv)
-// console.log(foo)
-if(foo["h"]){
+const args = minimist(process.argv)
+// console.log(args)
+if(args["h"]){
     console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
     -h            Show this help message and exit.
     -n, -s        Latitude: N positive; S negative.
@@ -19,7 +19,7 @@ if(foo["h"]){
 var longitude;
 var latitude;
 
-// if((foo["s"]||foo["n"]) && (foo["e"] || foo["w"])){
+// if((args["s"]||args["n"]) && (args["e"] || args["w"])){
 //     throw Error("missing a longitude or latitude");
 // }
 
@@ -30,35 +30,35 @@ function coordinatesValidate(coordinate) {
     }
 }
 
-// console.log((foo.hasOwnProperty("n") || foo.hasOwnProperty("s")) && (foo.hasOwnProperty("e") || foo.hasOwnProperty("w")))
-if(!((foo.hasOwnProperty("n") || foo.hasOwnProperty("s")) && (foo.hasOwnProperty("e") || foo.hasOwnProperty("w")))){
+// console.log((args.hasOwnProperty("n") || args.hasOwnProperty("s")) && (args.hasOwnProperty("e") || args.hasOwnProperty("w")))
+if(!((args["n"] || args["s"]) && (args["e"] || args["w"]))){
     process.exit(0);
 }
 
-if(foo.hasOwnProperty("n")){
-    coordinatesValidate(foo["n"]);
-    longitude = parseFloat(foo["n"]);
-}else if(foo.hasOwnProperty("s")){
-    coordinatesValidate(foo["s"]);
-    longitude = -1 * parseFloat(foo["s"]);
+if(args.hasOwnProperty("n")){
+    coordinatesValidate(args["n"]);
+    longitude = parseFloat(args["n"]);
+}else if(args.hasOwnProperty("s")){
+    coordinatesValidate(args["s"]);
+    longitude = -1 * parseFloat(args["s"]);
 }
-if(foo.hasOwnProperty("e")){
-    coordinatesValidate(foo["e"]);
-    latitude = parseFloat(foo["e"]);
-}else if(foo.hasOwnProperty("w")){
-    coordinatesValidate(foo["w"]);
-    latitude = -1 * parseInt(foo["w"]);
+if(args.hasOwnProperty("e")){
+    coordinatesValidate(args["e"]);
+    latitude = parseFloat(args["e"]);
+}else if(args.hasOwnProperty("w")){
+    coordinatesValidate(args["w"]);
+    latitude = -1 * parseInt(args["w"]);
 }
 var timezone = moment.tz.guess()
-if (foo.z) {
-	timezone = foo.z;
+if (args.z) {
+	timezone = args.z;
 } else {
 	timezone = timezone;
 }
 var days;
-if(foo.hasOwnProperty("d")){
-    coordinatesValidate(foo["d"]);
-    days = parseInt(foo["d"]);
+if(args.hasOwnProperty("d")){
+    coordinatesValidate(args["d"]);
+    days = parseInt(args["d"]);
     if(days < 0 || days > 6){
         process.exit(0);
     }
@@ -73,17 +73,17 @@ var response = await fetch(url);
 const data = await response.json();
 // console.log(data)
 
-if(foo.j){
-    console.log(data)
-    process.exit(0);
-}
 // console.log(data.daily.precipitation_hours)
 // var isGalosh = data.daily.precipitation_hours[days] >= 1 ? "You might need your galoshes " : "You will not need your galoshes";
 if (days == 0) {
     console.log("today.")
 } else if (days > 1) {
-console.log("in " + days + " days.")
+    console.log("in " + days + " days.")
 } else {
-console.log("tomorrow.")
+    console.log("tomorrow.")
 }
-process.exit(0);
+
+if(args.j){
+    console.log(data)
+    process.exit(0);
+}
