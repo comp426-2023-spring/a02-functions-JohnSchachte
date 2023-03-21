@@ -48,7 +48,12 @@ if(foo.hasOwnProperty("e")){
     coordinatesValidate(foo["w"]);
     latitude = -1 * parseInt(foo["w"]);
 }
-var tz = foo["z"] ? foo["z"] : moment.tz.guess();
+var timezone = moment.tz.guess()
+if (args.z) {
+	timezone = args.z;
+} else {
+	timezone = timezone;
+}
 var days;
 if(foo.hasOwnProperty("d")){
     coordinatesValidate(foo["d"]);
@@ -59,7 +64,7 @@ if(foo.hasOwnProperty("d")){
 } else{
     days = 1;
 }
-var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${tz}&current_weather=true`
+var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${timezone}&current_weather=true`
 // var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&elevation=127&current_weather=true&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,rain.json`;
 // console.log(url)
 var response = await fetch(url);
