@@ -59,16 +59,10 @@ if(foo.hasOwnProperty("d")){
 } else{
     days = 1;
 }
-
-var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${tz}&elevation=127&current_weather=true`
+var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=precipitation_hours&timezone=${tz}&current_weather=true`
 // var url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&elevation=127&current_weather=true&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,rain.json`;
 // console.log(url)
-var response = await fetch(url,{
-    method : "GET",
-    headers : {
-        "Content-Type" : "application/json"
-    }
-});
+var response = await fetch(url);
 // console.log(response)
 const data = await response.json();
 // console.log(data)
@@ -77,8 +71,8 @@ if(foo.hasOwnProperty("j")){
     console.log(data)
     process.exit(0);
 }
-console.log(data.daily.precipitation_hours)
-var isGalosh = data.daily.precipitation_hours[days] >= 1 ? "You might need your galoshes " : "You will not need your galoshes";
+// console.log(data.daily.precipitation_hours)
+// var isGalosh = data.daily.precipitation_hours[days] >= 1 ? "You might need your galoshes " : "You will not need your galoshes";
 if (days == 0) {
     console.log(isGalosh + " today.");
 } else if (days == 1) {
