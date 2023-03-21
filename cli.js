@@ -25,13 +25,13 @@ var latitude;
 function coordinatesValidate(coordinate) {
     // console.log(parseFloat(coordinate))
     if(isNaN(parseFloat(coordinate))){
-        throw new Error("This was supposed to a number but you gave me shit.");
+        throw Error("This was supposed to a number but you gave me shit.");
     }
 }
 
 // console.log((foo.hasOwnProperty("n") || foo.hasOwnProperty("s")) && (foo.hasOwnProperty("e") || foo.hasOwnProperty("w")))
 if(!((foo.hasOwnProperty("n") || foo.hasOwnProperty("s")) && (foo.hasOwnProperty("e") || foo.hasOwnProperty("w")))){
-    throw new Error("no latitude and no longitude set")
+    throw Error("no latitude and no longitude set")
 }
 
 if(foo.hasOwnProperty("n")){
