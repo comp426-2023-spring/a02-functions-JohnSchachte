@@ -25,13 +25,13 @@ var latitude;
 function coordinatesValidate(coordinate) {
     // console.log(parseFloat(coordinate))
     if(isNaN(parseFloat(coordinate))){
-        throw Error("This was supposed to a number but you gave me shit.");
+        process.exit(0);
     }
 }
 
 // console.log((foo.hasOwnProperty("n") || foo.hasOwnProperty("s")) && (foo.hasOwnProperty("e") || foo.hasOwnProperty("w")))
 if(!((foo.hasOwnProperty("n") || foo.hasOwnProperty("s")) && (foo.hasOwnProperty("e") || foo.hasOwnProperty("w")))){
-    throw Error("no latitude and no longitude set")
+    process.exit(0);
 }
 
 if(foo.hasOwnProperty("n")){
@@ -54,7 +54,7 @@ if(foo.hasOwnProperty("d")){
     coordinatesValidate(foo["d"]);
     days = parseInt(foo["d"]);
     if(days < 0 || days > 6){
-        throw new Error("days should be in range of 0-6");
+        process.exit(0);
     }
 } else{
     days = 1;
