@@ -16,39 +16,29 @@ if(args["h"]){
     -j            Echo pretty JSON from open-meteo API and exit.`)
     process.exit(0);
 }
-var longitude;
-var latitude;
+let latitude;
+let longitude;
+let timezone_url;
+let day;
 
-// if((args["s"]||args["n"]) && (args["e"] || args["w"])){
-//     throw Error("missing a longitude or latitude");
-// }
-
-function coordinatesValidate(coordinate) {
-    // console.log(parseFloat(coordinate))
-    if(isNaN(parseFloat(coordinate))){
-        process.exit(0);
-    }
+if (args.n) {
+	latitude = args.n;
+} else if (args.s) {
+	latitude = -args.s
+} else if (!latitude) {
+	console.log("Latitude must be in range");
+	process.exit(0);
 }
 
-// console.log((args.hasOwnProperty("n") || args.hasOwnProperty("s")) && (args.hasOwnProperty("e") || args.hasOwnProperty("w")))
-if(!((args["n"] || args["s"]) && (args["e"] || args["w"]))){
-    process.exit(0);
+if (args.e) {
+        longitude = args.e;
+} else if (args.w) {
+        longitude = -args.w
+} else if (!longitude) {
+	console.log("Longitude must be in range");
+	process.exit(0);
 }
 
-if(args.hasOwnProperty("n")){
-    coordinatesValidate(args["n"]);
-    longitude = parseFloat(args["n"]);
-}else if(args.hasOwnProperty("s")){
-    coordinatesValidate(args["s"]);
-    longitude = -1 * parseFloat(args["s"]);
-}
-if(args.hasOwnProperty("e")){
-    coordinatesValidate(args["e"]);
-    latitude = parseFloat(args["e"]);
-}else if(args.hasOwnProperty("w")){
-    coordinatesValidate(args["w"]);
-    latitude = -1 * parseInt(args["w"]);
-}
 var timezone = moment.tz.guess()
 if (args.z) {
 	timezone = args.z;
