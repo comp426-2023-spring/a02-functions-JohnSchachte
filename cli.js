@@ -18,23 +18,30 @@ if(args["h"]){
 }
 let latitude;
 let longitude;
-let timezone_url;
-let day;
+function coordinatesValidate(coordinate) {
+    // console.log(parseFloat(coordinate))
+    if(isNaN(parseFloat(coordinate))){
+        process.exit(0);
+    }
+    return coordinate
+}
 
 if (args.n) {
-	latitude = args.n;
+	latitude = coordinatesValidate(args.n);
 } else if (args.s) {
-	latitude = -args.s
-} else if (!latitude) {
+	latitude = -coordinatesValidate(args.s)
+}
+if (!latitude) {
 	console.log("Latitude must be in range");
 	process.exit(0);
 }
 
 if (args.e) {
-        longitude = args.e;
+        longitude = coordinatesValidate(args.e);
 } else if (args.w) {
-        longitude = -args.w
-} else if (!longitude) {
+        longitude = -coordinatesValidate(args.w)
+}
+if (!longitude) {
 	console.log("Longitude must be in range");
 	process.exit(0);
 }
