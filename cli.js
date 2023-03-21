@@ -74,10 +74,10 @@ if(foo.hasOwnProperty("j")){
 // console.log(data.daily.precipitation_hours)
 // var isGalosh = data.daily.precipitation_hours[days] >= 1 ? "You might need your galoshes " : "You will not need your galoshes";
 if (days == 0) {
-    console.log(isGalosh + " today.");
-} else if (days == 1) {
-    console.log(isGalosh + " tomorrow.");
+    console.log("today.")
+} else if (days > 1) {
+console.log("in " + days + " days.")
 } else {
-    console.log(isGalosh + ` in ${days} days.`);
+console.log("tomorrow.")
 }
 process.exit(0);
