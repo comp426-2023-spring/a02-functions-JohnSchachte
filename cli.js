@@ -50,8 +50,8 @@ if(foo.hasOwnProperty("e")){
     latitude = -1 * parseInt(foo["w"]);
 }
 var timezone = moment.tz.guess()
-if (args.z) {
-	timezone = args.z;
+if (foo.z) {
+	timezone = foo.z;
 } else {
 	timezone = timezone;
 }
