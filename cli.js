@@ -2,6 +2,7 @@
 
 import minimist from "minimist";
 import moment from "moment-timezone";
+import fetch from "node-fetch";
 
 const foo = minimist(process.argv)
 // console.log(foo)
@@ -72,7 +73,7 @@ var response = await fetch(url);
 const data = await response.json();
 // console.log(data)
 
-if(foo.hasOwnProperty("j")){
+if(foo.j){
     console.log(data)
     process.exit(0);
 }
